@@ -32,7 +32,7 @@ export default function InfoModal(props) {
 
               {/* link to open the page */}
               <a href={
-                data.permission == 'private'
+                data.permission === 'private'
                 ? data.private_url
                 : data.public_url
               } className='info' target='_blank' rel='noreferrer'>
@@ -45,7 +45,7 @@ export default function InfoModal(props) {
               <p className='description'>{data.description}</p>
 
               {/* speaker (only showing the main speaker) */}
-              {data.speakers.length == 0
+              {data.speakers.length === 0
                 ? null
                 : <span>
                     <h4>Speaker - <span>{data.speakers[0].name}</span></h4>

@@ -8,7 +8,7 @@ export default function Login(props) {
   function validCredentials(username, password) {
     let validUsername = 'owen'
     let validPassword = 'owenpassword'
-    if (username == validUsername && password == validPassword) {
+    if (username === validUsername && password === validPassword) {
       return true
     }
     return false

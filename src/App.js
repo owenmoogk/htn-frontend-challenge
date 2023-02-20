@@ -9,7 +9,7 @@ export default function App() {
   // however for this purpose, storing if the user is logged in works (for demonstration)
   function getLoggedInState(){
     if (localStorage.getItem('loggedIn')){
-      return localStorage.getItem('loggedIn') == 'true'
+      return localStorage.getItem('loggedIn') === 'true'
     }
     return false
   }
@@ -131,7 +131,7 @@ export default function App() {
           }
         
           {/* sort button */}
-          {sortedBy == 'date'
+          {sortedBy === 'date'
             ? <button onClick={() => sortTable('category')} id="sort-button" className='mobileHidden'>Sort by Category</button>
             : <button onClick={() => sortTable('date')} id="sort-button" className='mobileHidden'>Sort by Start Time</button>
           }
@@ -150,7 +150,7 @@ export default function App() {
 
                 // don't show private things when the user is not logged in
                 // there should probably be more security things here, however for this demo it is ok
-                if (item.permission != 'private' || loggedIn){
+                if (item.permission !== 'private' || loggedIn){
                   return (
                     <tr key={key} onClick={() => {setInfoModal(true); setInfoId(item.id)}}>
 
@@ -171,6 +171,7 @@ export default function App() {
                     </tr>
                   )
                 }
+                return null
               })
               : null
             }
