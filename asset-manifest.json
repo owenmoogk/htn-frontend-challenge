@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/htn-frontend-challenge/static/css/main.5c58f9d6.css",
+    "main.js": "/htn-frontend-challenge/static/js/main.8db9753e.js",
+    "index.html": "/htn-frontend-challenge/index.html",
+    "main.5c58f9d6.css.map": "/htn-frontend-challenge/static/css/main.5c58f9d6.css.map",
+    "main.8db9753e.js.map": "/htn-frontend-challenge/static/js/main.8db9753e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5c58f9d6.css",
+    "static/js/main.8db9753e.js"
+  ]
+}
