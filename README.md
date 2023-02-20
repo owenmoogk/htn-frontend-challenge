@@ -23,7 +23,7 @@ This web app was created using ReactJS. This was chosen in part because I have e
 #### Problems Encountered
 Some problems that I ran into included scaling the website for mobile viewing. Many mobile websites are poorly designed (due to the fact that almost every developer is developing on a large monitor). I also designed first with computer users in mind, and then later had to go back and modify the code for mobile users. I solved this by creating a class for components that did not need displaying on mobile, and then setting a breakpoint for the alternate rendering scheme. With more time, I would have completely redesigned for mobile viewers, making the UI more intuitive.
 
-##### Design Tradeoffs
+#### Design Tradeoffs
 One design decision that was made during this was the sorting algorithm. I opted for a version of bubble sort. This design decision was made because it would be unreasonable to think that events at a hackathon could exceed a few hundred. Because of this, it seemed more sensible to write code that was readable and that could be easily modified, instead of a slightly faster algorithm. With any reasonable size of events, the time difference would not be noticeable from a user's perspective.
 
 ## Additional Features
