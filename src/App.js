@@ -102,18 +102,36 @@ export default function App() {
         :null
       }
 
-      <h1>Events - Hack the North</h1>
+      {/* page header */}
+      <div style={{
+        width: "100%",
+        textAlign: "center"
+      }}>
+        <div style={{
+          display: "inline-flex"
+        }}>
+          <h1>Events&nbsp;</h1><h1 className='mobileHidden'> - Hack the North</h1>
+        </div>
+      </div>
+      
+      {/* header with sorting and searching */}
       <div className="head">
         <input type="text" id="searchBar" onKeyUp={(e) => search(e.target.value)} placeholder="Search by Name, Date, Time, or Event Type" />
-        {loggedIn
-          ? <button onClick={() => {setLoggedIn(false); localStorage.setItem('loggedIn', false)}}>Logout</button>
-          : <button onClick={() => setLoginPopup(true)}>Login</button>
-        }
         
-        {sortedBy == 'date'
-          ? <button onClick={() => sortTable('category')} id="sort-button">Sort by Category</button>
-          : <button onClick={() => sortTable('date')} id="sort-button">Sort by Start Time</button>
-        }
+        <div>
+          {/* logged in button */}
+          {loggedIn
+            ? <button onClick={() => {setLoggedIn(false); localStorage.setItem('loggedIn', false)}}>Logout</button>
+            : <button onClick={() => setLoginPopup(true)}>Login</button>
+          }
+        
+          {/* sort button */}
+          {sortedBy == 'date'
+            ? <button onClick={() => sortTable('category')} id="sort-button" className='mobileHidden'>Sort by Category</button>
+            : <button onClick={() => sortTable('date')} id="sort-button" className='mobileHidden'>Sort by Start Time</button>
+          }
+        </div>
+       
       </div>
 
       <div className="tableHolder">
@@ -127,10 +145,14 @@ export default function App() {
                       <td>
                         <b>{item.name}</b>
                       </td>
-                      <td>
+
+                      {/* date */}
+                      <td className='mobileHidden'>
                         {timestampToString(item.start_time) + ' - ' + timestampToString(item.end_time)}
                       </td>
-                      <td>
+
+                      {/* activity type (converting from this_case to This Case (snake case to english)) */}
+                      <td className='mobileHidden'>
                         {item.event_type.replace('_', ' ').charAt(0).toUpperCase() + item.event_type.replace('_', ' ').slice(1)}
                       </td>
                     </tr>
