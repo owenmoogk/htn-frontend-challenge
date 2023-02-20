@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function Login(props) {
 
@@ -14,6 +14,7 @@ export default function Login(props) {
     return false
   }
 
+  // handle the login when user submits info
   function handleLogin() {
     let username = document.getElementById('usernameInput').value
     let password = document.getElementById('passwordInput').value
@@ -29,6 +30,7 @@ export default function Login(props) {
     }
   }
 
+  // if the user hits enter, then we need to handle login
   function handleKeyDown(event) {
     if (event.key === 'Enter' || event.key === "NumpadEnter") {
       handleLogin()
@@ -37,17 +39,26 @@ export default function Login(props) {
 
   return (
     <div id="myModal" className="modal">
-      <div className="modal-content" style={{width:'400px'}}>
+      <div className="modal-content" id='loginModal' style={{width:'400px'}}>
+
+        {/* header */}
         <h3>Login</h3>
+
+        {/* username input */}
         <input className='authInput' placeholder='Username' id='usernameInput' onKeyDown={(e) => handleKeyDown(e)} />
-        <br /><br />
-        <input className='authInput' type='password' placeholder='Password' id='passwordInput' onKeyDown={(e) => handleKeyDown(e)} />
         <br />
+
+        {/* password input */}
+        <input className='authInput' type='password' placeholder='Password' id='passwordInput' onKeyDown={(e) => handleKeyDown(e)} />
+
+        {/* error display (if credentials are invalid) */}
         {showError ? 
           <p className='error'>Error, invalid credentials.</p>
           :<br />
         }
-        <div id='buttonContainer'>
+
+        {/* buttons */}
+        <div>
           <button id='saveButton' onClick={() => handleLogin()}>Login</button>
           <button id='cancelButton' onClick={() => props.setLoginPopup(false)}>Cancel</button>
         </div>

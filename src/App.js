@@ -27,7 +27,7 @@ export default function App() {
   useEffect(() => {
     fetch("https://api.hackthenorth.com/v3/events")
       .then(response => response.json())
-      .then(json => {console.log(json); setData(json); sortTable('date')})
+      .then(json => {setData(json); sortTable('date')})
   }, [])
 
   window.onclick = function(event) {
@@ -37,6 +37,7 @@ export default function App() {
     }
   }
 
+  // table sorting function
   function sortTable(sortBy) {
 
     setSortedBy(sortBy)
@@ -68,6 +69,7 @@ export default function App() {
     }
   }
 
+  // searching function
   function search(searchBy){
     var table = document.getElementById('table').childNodes[0]
     var nodes = table.childNodes
@@ -92,11 +94,13 @@ export default function App() {
   return (
     <div className="App">
 
+      {/* if the login popup is active */}
       {loginPopup ?
         <Login setLoginPopup={setLoginPopup} setLoggedIn={setLoggedIn}/>
         :null
       }
 
+      {/* if the info modal popup is active for descriptions of events */}
       {infoModal ? 
         <InfoModal infoId={infoId} timestampToString={timestampToString}/>
         :null
@@ -116,6 +120,7 @@ export default function App() {
       
       {/* header with sorting and searching */}
       <div className="head">
+        
         <input type="text" id="searchBar" onKeyUp={(e) => search(e.target.value)} placeholder="Search by Name, Date, Time, or Event Type" />
         
         <div>
@@ -134,14 +139,22 @@ export default function App() {
        
       </div>
 
+      {/* table */}
       <div className="tableHolder">
         <table id="table">
           <tbody>
+
+            {/* mapping the data onto the table items */}
             {data
               ? data.map((item, key) => {
+
+                // don't show private things when the user is not logged in
+                // there should probably be more security things here, however for this demo it is ok
                 if (item.permission != 'private' || loggedIn){
                   return (
                     <tr key={key} onClick={() => {setInfoModal(true); setInfoId(item.id)}}>
+
+                      {/* name */}
                       <td>
                         <b>{item.name}</b>
                       </td>
@@ -158,7 +171,6 @@ export default function App() {
                     </tr>
                   )
                 }
-                return
               })
               : null
             }
